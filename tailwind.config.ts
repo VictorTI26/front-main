@@ -10,13 +10,11 @@ const config: Config = {
   theme: {
   	extend: {
 		fontFamily: {
-			'kanit': ['Kanit', 'sans-serif'],
-			'kalam': ['Kalam', 'cursive'],
-			'poppins': ['Poppins','sans-serif'],
-		},
+			'poppins': ['Poppins', 'sans-serif'],
+		 },
   		colors: {
-			primaria: "#31572C",
-			secundaria: "#9B2226",
+			azul: "#3532CE",
+			preto: "#151515",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
