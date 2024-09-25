@@ -5,10 +5,11 @@ import Seletor from "@/components/select/Select";
 import Title from "@/components/title/Title";
 import React from "react";
 import { api } from "@/api/api";
+import { useRouter } from 'next/navigation';
 
 
 export default function Cadastro() {
-
+  const router = useRouter();
   const cadastrar = (form: FormData) => {
     let dto = {
       nome: form.get('nome'),
@@ -18,7 +19,7 @@ export default function Cadastro() {
     console.log(dto)
     api.post('/usuario', dto)
       .then(() => {
-        
+        router.push('/login');
       })
       .catch(() => {
         alert('Erro ao cadastrar usuário!');
@@ -36,7 +37,9 @@ export default function Cadastro() {
         <InputText id="senha" name="senha" placeholder="Senha:" type="password"/>
       </section>
       <div className="mt-10 w-40">
-      <Button type="submit" children="Cadastro"></Button>
+      <Button onClick={() => {
+        router.push("/cadastro")
+      }}  type="submit" children="Cadastrar"></Button>
       </div>
       </section>
     </form>
