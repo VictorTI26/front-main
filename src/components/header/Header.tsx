@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Header() {
   return (
+
     <header className="bg-azul h-16 flex items-center font-poppins">
       <div className="flex flex-row justify-between w-[80%] mx-auto items-center">
         <div className=" text-white flex flex-col items-center">

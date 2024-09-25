@@ -1,25 +1,47 @@
+'use client'
 import InputText from "@/components/input-text/InputText";
 import Button from "@/components/button/Button";
 import Seletor from "@/components/select/Select";
 import Title from "@/components/title/Title";
 import React from "react";
+import { api } from "@/api/api";
+import { useRouter } from 'next/navigation';
+
 
 export default function Cadastro() {
+  const router = useRouter();
+  const cadastrar = (form: FormData) => {
+    let dto = {
+      nome: form.get('nome'),
+      senha: form.get('senha')
+    }
+
+    console.log(dto)
+    api.post('/usuario', dto)
+      .then(() => {
+        router.push('/login');
+      })
+      .catch(() => {
+        alert('Erro ao cadastrar usuário!');
+      });
+  }
 
   return (
-    <main className="w-full flex flex-col items-center">
+    <form action={cadastrar} className="w-full flex flex-col items-center">
       <section className="w-[80%] mt-16 flex flex-col items-center">
       <section className="mt-20">
-        <h1 className=" font-poppins text-4xl">Bem vindo!</h1>
+        <h1 className=" font-poppins text-4xl">Crie sua conta!</h1>
       </section>
-      <section className="flex flex-col mt-8 gap-4 w-60">
-        <InputText placeholder="Usuário:" />
-        <InputText placeholder="Senha:" type="password"/>
+      <section  className="flex flex-col mt-8 gap-4 w-60">
+        <InputText id="nome" name="nome" placeholder="Usuário:" />
+        <InputText id="senha" name="senha" placeholder="Senha:" type="password"/>
       </section>
       <div className="mt-10 w-40">
-      <Button children="Cadastro"></Button>
+      <Button onClick={() => {
+        router.push("/cadastro")
+      }}  type="submit" children="Cadastrar"></Button>
       </div>
       </section>
-    </main>
+    </form>
   );
 }
