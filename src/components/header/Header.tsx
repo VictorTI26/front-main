@@ -10,7 +10,8 @@ export default function Header() {
         </div>
         <nav className="flex gap-10">
           <a className="text-white" href="/feed">Feed</a>
-          <a className="text-white" href="/upload">Upload</a>
+          <a className="text-white" href="/postagem">Upload</a>
+          <a className="text-white" href="/login">Login</a>
         </nav>
       </div>
     </header>

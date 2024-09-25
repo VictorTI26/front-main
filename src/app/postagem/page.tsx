@@ -2,6 +2,7 @@
 import { mandarPostagem } from "@/api/postagem";
 import InputText from "@/components/input-text/InputText";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Postagem() {
@@ -9,6 +10,7 @@ export default function Postagem() {
     const [file, setFile] = useState<File>()
     const [legenda, setLegenda] = useState<string>("")
     const [url, setUrl] = useState<string>("")
+    const router = useRouter()
 
     const setarFile = (file: FileList | null) => {
         if (file) {
@@ -22,15 +24,24 @@ export default function Postagem() {
         }
     }
 
-    const mandarPublicacao = async () => {
+    const mandarPublicacao = async () => 
+    {   
+        let usuario = localStorage.getItem("usuario")
+
+        if (!usuario) {
+            alert("Usuário não logado")
+            return
+        }
+
         const formData = new FormData()
         const obj = {
             legenda: legenda,
-            usuarioId: 1
+            usuarioId: usuario,
         }
         formData.append("dto", new Blob([JSON.stringify(obj)], { type: 'application/json' }))
         file && formData.append("file", file)
         const reponse = mandarPostagem(formData);
+        router.push("/feed")
     }
 
     return (
