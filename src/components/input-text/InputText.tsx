@@ -12,13 +12,13 @@ export default function InputText(props : InputHTMLAttributes<HTMLInputElement> 
     const [typePass, setTypePass] = useState<string | undefined>(props.type)
 
     return (
-        <div className="relative flex flex-col">
+        <div className="relative flex flex-col w-full">
             <input 
                 {...props} 
                 type={typePass} 
-                className={`peer font-poppins px-2 rounded w-full h-10 text-sm text-gray-600 
+                className={`peer font-poppins px-2 rounded w-full h-10 text-sm text-preto 
                 border focus:bg-white bg-white placeholder-transparent focus:outline-none 
-                ${props?.erro && !focus ? 'border-error': 'border-gray-600'}`}
+                ${props?.erro && !focus ? 'border-error': 'border-azul'}`}
                 onFocus={()=>setFocus(true)} 
                 onBlur={()=>setFocus(false)}
             />
@@ -26,7 +26,7 @@ export default function InputText(props : InputHTMLAttributes<HTMLInputElement> 
                 htmlFor={props?.id} 
                 className="absolute left-1.5 font-poppins px-1 lg:text-sm text-xs transition-all bg-white 
                 rounded md:peer-placeholder-shown:text-sm peer-placeholder-shown:text-xs 
-                peer-placeholder-shown:text-black peer-placeholder-shown:top-2.5 peer-placeholder-shown:left-2
+                peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2.5 peer-placeholder-shown:left-2
                 peer-focus:-top-2 peer-focus:left-1.5 peer-focus:bg-white pointer-events-none"
             >{props?.placeholder}</label>
 
